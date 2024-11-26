@@ -1,22 +1,36 @@
 import streamlit as st
 import pandas as pd
 
+# Fungsi untuk memuat data dari file CSV
+def load_data():
+    try:
+        data = pd.read_csv('stok_sembako.csv')
+    except FileNotFoundError:
+        data = pd.DataFrame({
+            'Nama Barang': ['Beras', 'Gula', 'Minyak Goreng', 'Telur', 'Tepung', 'Garam', 'Kopi', 'Teh'],
+            'Stok': [200, 100, 300, 400, 500, 700, 800, 600]
+        })
+    return data
+
+# Fungsi untuk menyimpan data ke file CSV
+def save_data(data):
+    data.to_csv('stok_sembako.csv', index=False)
+
 # Inisialisasi data stok barang
 if 'data' not in st.session_state:
-    st.session_state.data = pd.DataFrame({
-        'Nama Barang': ['Beras', 'Gula', 'Minyak Goreng', 'Indomie'],
-        'Stok': [100, 300, 500, 1000]
-    })
+    st.session_state.data = load_data()
 
 # Fungsi untuk menambah stok
 def tambah_stok(nama_barang, jumlah):
     st.session_state.data.loc[st.session_state.data['Nama Barang'] == nama_barang, 'Stok'] += jumlah
+    save_data(st.session_state.data)
 
 # Fungsi untuk mengurangi stok
 def kurangi_stok(nama_barang, jumlah):
     st.session_state.data.loc[st.session_state.data['Nama Barang'] == nama_barang, 'Stok'] -= jumlah
+    save_data(st.session_state.data)
 
-st.title('Manajemen Stok Barang')
+st.title('Manajemen Stok Toko Sembako')
 
 # Form untuk menambah stok
 st.header('Tambah Stok')
