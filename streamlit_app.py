@@ -7,7 +7,7 @@ def load_data():
         data = pd.read_csv('stok_sembako.csv')
     except FileNotFoundError:
         data = pd.DataFrame({
-            'Nama Barang': ['Beras', 'Gula', 'Minyak Goreng', 'Telur', 'Tepung', 'Garam', 'Kopi', 'Teh'],
+            'Nama Barang': ['Beras', 'Gula', 'Minyak Goreng', 'Telur', 'Tepung', 'Garam', 'Kopi', 'Asem'],
             'Stok': [200, 100, 300, 400, 500, 700, 800, 600]
         })
     return data
