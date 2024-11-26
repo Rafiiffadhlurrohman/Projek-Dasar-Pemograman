@@ -4,8 +4,8 @@ import pandas as pd
 # Inisialisasi data stok barang
 if 'data' not in st.session_state:
     st.session_state.data = pd.DataFrame({
-        'Nama Barang': ['Barang A', 'Barang B', 'Barang C'],
-        'Stok': [10, 20, 30]
+        'Nama Barang': ['Beras', 'Gula', 'Minyak Goreng', 'Indomie'],
+        'Stok': [100, 300, 500, 1000]
     })
 
 # Fungsi untuk menambah stok
